@@ -1,0 +1,16 @@
+# Render Blueprint: New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: leakfix-render-test
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      # Same values as the committed .env: the "leaked" secrets leakfix will replace.
+      - key: JWT_SECRET
+        value: d369a8db1a0665e71bc374caa0e81da3d1a27fe47342c922
+      - key: JWT_REFRESH_SECRET
+        value: 428ce45a2e3fbca4c2a7142958ee5e4c153831f3c9e39ca6
